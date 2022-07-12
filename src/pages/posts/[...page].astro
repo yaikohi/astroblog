@@ -1,7 +1,6 @@
 ---
 import BasePage from "../../layouts/BasePage.astro"
 import PostPreview from "../../components/PostPreview.astro"
-import Pagination from "../../components/Pagination.astro"
 
 export async function getStaticPaths({ paginate, rss }) {
     const allPosts = await Astro.glob("./*.md")
@@ -9,30 +8,27 @@ export async function getStaticPaths({ paginate, rss }) {
         (a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
     )
 
-    return paginate(sortedPosts, { pageSize: 1 })
+    return paginate(sortedPosts, { pageSize: 4 })
 }
 
 // Page
 const title = "Blog"
-const description = "Some blog I wrote intoxicated"
+const description = "Some blog that I wrote intoxicated"
 const { page } = Astro.props
-
-console.log(page)
 ---
 
 
 <BasePage>
-    <h1 class="my-8 text-violet-900">{title}</h1>
-
-    <h2 class="my-2 text-violet-700">
+    <div class="max-w-lg">
+    <h1 class="my-8 text-5xl text-violet-900">{title}</h1>
+    <h2 class="my-2 text-2xl text-violet-700">
         {description}
     </h2>
+    <p class="text-xs italic text-end">haha just kidding</p>
+</div>
 
     <small> {page.start + 1} - {page.end + 1} of {page.total} </small>
 
-    {page.data.map(post => {
-        <PostPreview post={post} />
-    })}
+    {page.data.map((post) => <PostPreview post={post} />)}
 
-    <Pagination nextUrl={page.url.next} prevUrl={page.url.prev} />
 </BasePage>

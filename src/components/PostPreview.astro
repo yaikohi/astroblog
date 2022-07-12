@@ -11,10 +11,20 @@ function formatDate(date) {
 }
 ---
 
-<article>
-  <h2>{frontmatter.title}</h2>
-  <p>By {frontmatter.author}</p>
-  <time datetime={frontmatter.date}>{formatDate(frontmatter.date)}</time>
-  <p>{frontmatter.description}</p>
-  <a href={post.url} aria-label={`Read ${frontmatter.title}`}>Read</a>
+<article class="max-w-2xl p-8 my-8 rounded-xl bg-violet-200">
+  <h2 class="text-2xl">{frontmatter.title}</h2>
+  <div class="flex justify-between">
+    <p class="text-sm italic ">By {frontmatter.author}</p>
+    <time class="text-xs" datetime={frontmatter.date}
+      >{formatDate(frontmatter.date)}</time
+    >
+  </div>
+  <div class="flex flex-col">
+    <p class="">{frontmatter.description}</p>
+    <a
+      class="text-lg hover:underline-offset-4 hover:underline hover:text-violet-900"
+      href={post.url}
+      aria-label={`Read ${frontmatter.title}`}>Read</a
+    >
+  </div>
 </article>
