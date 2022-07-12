@@ -3,7 +3,6 @@
 **/*.tar.gz
 **/*.tgz
 **/*.log
-
 package-lock.json
 **/*.bun
 
@@ -19,6 +18,7 @@ package-lock.json
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
