@@ -4,15 +4,15 @@
 
 @layer base {
   h1 {
-    @apply text-5xl;
+    @apply text-5xl font-medium;
   }
   h2 {
-    @apply text-3xl;
+    @apply text-3xl font-medium;
   }
   h3 {
     @apply text-2xl;
   }
   p {
-    @apply text-lg;
+    @apply text-lg py-2;
   }
 }
