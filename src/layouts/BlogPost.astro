@@ -1,14 +1,13 @@
 ---
+import Navbar from "../components/Navbar.astro";
+import BaseHead from "../components/BaseHead.astro";
 const { content } = Astro.props;
 ---
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>{content.title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
+  <BaseHead />
   <body>
+    <Navbar />
     <h1>{content.title}</h1>
     <slot />
     <p>Written on: {content.date}</p>

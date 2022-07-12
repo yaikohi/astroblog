@@ -1,0 +1,20 @@
+---
+export interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+const { frontmatter } = post;
+
+function formatDate(date) {
+  return new Date(date).toUTCString().replace(/(\d\d\d\d) .*/, "$1"); // remove everything after YYYY
+}
+---
+
+<article>
+  <h2>{frontmatter.title}</h2>
+  <p>By {frontmatter.author}</p>
+  <time datetime={frontmatter.date}>{formatDate(frontmatter.date)}</time>
+  <p>{frontmatter.description}</p>
+  <a href={post.url} aria-label={`Read ${frontmatter.title}`}>Read</a>
+</article>

@@ -1,0 +1,32 @@
+---
+import BasePage from "../../layouts/BasePage.astro"
+import PostPreview from "../../components/PostPreview.astro"
+
+export async function getStaticPaths({ paginate, rss }) {
+    const allPosts = await Astro.glob("./*.md")
+    const sortedPosts = allPosts.sort(
+        (a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
+    )
+
+    return paginate(sortedPosts, { pageSize: 1 })
+}
+
+// Page
+const title = "Blog"
+const description = "Some blog I wrote intoxicated"
+const { page } = Astro.props
+---
+
+<BasePage>
+    <h1 class="my-8 text-violet-900">{title}</h1>
+
+    <h2 class="my-2 text-violet-700">
+        {description}
+    </h2>
+
+    <small> {page.start + 1} - {page.end + 1} of {page.total} </small>
+
+    {page.data.map(post => {
+        <PostPreview post={post} />
+    })}
+</BasePage>
