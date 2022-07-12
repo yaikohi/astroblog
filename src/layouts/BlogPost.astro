@@ -1,0 +1,16 @@
+---
+const { content } = Astro.props;
+---
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{content.title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <h1>{content.title}</h1>
+    <slot />
+    <p>Written on: {content.date}</p>
+  </body>
+</html>
