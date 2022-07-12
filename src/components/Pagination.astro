@@ -1,0 +1,15 @@
+---
+export interface Props {
+  prevUrl: string;
+  nextUrl: string;
+}
+
+const { prevUrl, nextUrl } = Astro.props;
+---
+
+<div>
+  <nav>
+    <a href={prevUrl || "#"} aria-label="Previous page">Previous </a>
+    <a href={nextUrl || "#"} aria-label="Next page">Next</a>
+  </nav>
+</div>
