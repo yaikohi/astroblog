@@ -1,15 +1,36 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import BaseHead from "../components/BaseHead.astro";
+import Pagination from "../components/Pagination.astro";
+
 const { content } = Astro.props;
+const currentPostPath = Astro.canonicalURL.pathname;
+
+const regexPattern = new RegExp("[1-9]");
+const currentPostNumber = currentPostPath.match(regexPattern);
+
+const nextPageUrl =
+  parseInt(currentPostNumber[0]) === 4
+    ? ""
+    : `/posts/${parseInt(currentPostNumber[0]) + 1}/`;
+const prevPageUrl =
+  parseInt(currentPostNumber[0]) === 1
+    ? ""
+    : `/posts/${parseInt(currentPostNumber[0]) - 1}/`;
 ---
 
 <html>
   <BaseHead />
-  <body>
-    <Navbar />
-    <h1>{content.title}</h1>
-    <slot />
-    <p>Written on: {content.date}</p>
+  <body class="bg-violet-100">
+    <div class="max-w-2xl mx-auto">
+      <Navbar />
+      <h1 class="mt-8 mb-4 text-4xl">{content.title}</h1>
+      <p class="text-sm italic ">Written on: {content.date}</p>
+      <div class="px-4 my-8">
+        <slot />
+      </div>
+
+      <Pagination nextUrl={nextPageUrl} prevUrl={prevPageUrl} />
+    </div>
   </body>
 </html>
