@@ -1,6 +1,5 @@
-# React with Bun runtime
-
-This is a React project boostrapped with bun.
+# Astro with bun!
+and tailwindcss!
 
 ## Getting Started
 
