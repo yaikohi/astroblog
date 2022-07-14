@@ -10,7 +10,7 @@ const regexPattern = new RegExp("[1-9]");
 const currentPostNumber = currentPostPath.match(regexPattern);
 
 const nextPageUrl =
-  parseInt(currentPostNumber[0]) === 4
+  parseInt(currentPostNumber[0]) === 8
     ? ""
     : `/posts/${parseInt(currentPostNumber[0]) + 1}/`;
 const prevPageUrl =

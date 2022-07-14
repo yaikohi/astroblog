@@ -20,15 +20,16 @@ const { page } = Astro.props
 
 <BasePage>
     <div class="max-w-lg">
-    <h1 class="my-8 text-5xl text-violet-900">{title}</h1>
-    <h2 class="my-2 text-2xl text-violet-700">
-        {description}
-    </h2>
-    <p class="text-xs italic text-end">haha just kidding</p>
-</div>
+        <h1 class="my-8 text-5xl text-violet-900">{title}</h1>
+        <h2 class="my-2 text-2xl text-violet-700">
+            {description}
+        </h2>
+        <p class="text-xs italic text-end">haha just kidding</p>
+    </div>
+        
+    {page.data.map((post) => 
+        <PostPreview post={post} />
+    )}
 
     <small> {page.start + 1} - {page.end + 1} of {page.total} </small>
-
-    {page.data.map((post) => <PostPreview post={post} />)}
-
 </BasePage>
