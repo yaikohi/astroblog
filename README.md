@@ -1,3 +1,3 @@
-# Astro with bun!
+# Astro with bun and tailwindcss!
+*bun-hypebeast.png*
 
-and tailwindcss!
