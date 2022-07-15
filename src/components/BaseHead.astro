@@ -1,9 +1,11 @@
 ---
 import "../styles/global.css";
+
+const { headTitle } = Astro.props
 ---
 
 <head>
   <meta charset="utf-8" />
-  <title>My Cool Astro Site</title>
+  <title>{headTitle || "Cool Astro site"}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>

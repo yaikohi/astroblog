@@ -1,23 +1,25 @@
 ---
 export interface Props {
-  prevUrl: string;
-  nextUrl: string;
+  url: {
+    prev: string;
+    next: string;
+  };
 }
 
-const { prevUrl, nextUrl } = Astro.props;
+const { page } = Astro.props;
 ---
 
 <div class="my-12">
   <nav class="flex justify-between max-w-2xl">
     <a
       class="hover:text-violet-800 hover:underline hover:underline-offset-8"
-      href={prevUrl || "#"}
+      href={page.url.prev || "#"}
       aria-label="Previous page"
       >Previous
     </a>
     <a
       class="hover:text-violet-800 hover:underline hover:underline-offset-8"
-      href={nextUrl || "#"}
+      href={page.url.next || "#"}
       aria-label="Next page">Next</a
     >
   </nav>

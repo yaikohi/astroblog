@@ -1,0 +1,21 @@
+---
+import { MarkdownInstance } from "astro";
+import PostPreview from "./PostPreview.astro";
+
+export type Post = {
+    author: string,
+    date: string,
+    title: string,
+    description: string,
+}
+
+export interface Props {
+    posts: MarkdownInstance<Post>[]
+}
+
+const { posts } = Astro.props as Props
+---
+
+<section>
+    {posts.map(post => <PostPreview post={post} />)}
+</section>

@@ -1,0 +1,44 @@
+---
+import BlogPost from '@layouts/BlogPost.astro';
+import { getSlugFromPath } from 'src/utils/get-slug-from-path';
+
+export type Post = {
+  author: string;
+  date: string;
+  title: string;
+  description: string;
+};
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob<Post>('../../posts/*.md');
+
+const paths = allPosts.map((post) => {
+  const slug = getSlugFromPath(post.file)
+  return {
+    params: {
+      slug,
+    },
+    props: { post }
+  }
+})
+return paths
+}
+const { post } = Astro.props;
+const { title, date, author, description } = post.frontmatter
+---
+
+<BlogPost>
+  <h1 class="mt-8 mb-4 text-4xl">{title}</h1>
+  <h2 class="p-2 my-2 text-2xl">{description}</h2>
+  <div class="flex content-between gap-10">
+    <p class="text-xs italic">Posted: <time>{date}</time></p>
+    <p class="text-xs italic">Written by: {author}</p>
+  </div>
+  <div class="px-4 my-8">
+    <article>
+      <main>
+        <post.Content> </post.Content>            
+      </main>
+    </article>
+  </div>
+</BlogPost>

@@ -1,5 +1,18 @@
 ---
+import "../styles/global.css"
+import PostPreviewList from "@components/PostPreviewList.astro";
 import BasePage from "../layouts/BasePage.astro";
+import type { Post } from "@components/PostPreview.astro";
+
+let allPosts = await Astro.glob<Post>("../posts/*.md");
+
+allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.date).getTime() -
+    new Date(a.frontmatter.date).getTime()
+);
+
+const recentPosts = allPosts.slice(0, 3);
 ---
 
 <BasePage>
@@ -9,4 +22,6 @@ import BasePage from "../layouts/BasePage.astro";
       Welcome to this violet-coloured, text-filled, rectangular shape.
     </h2>
   </article>
+  <h2>Recent posts</h2>
+  <PostPreviewList posts={recentPosts} />
 </BasePage>
