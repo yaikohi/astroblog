@@ -8,30 +8,28 @@ export async function getStaticPaths({ paginate }) {
         (a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf()
     )
 
-    return paginate(sortedPosts, { pageSize: 8 })
+    return paginate(sortedPosts)
 }
 
 const { page } = Astro.props
 
-// Page
 const title = "Blog"
 const description = "Some blog that I wrote intoxicated"
 ---
 
 
-<BasePage>
+<BasePage primaryBgColor="bg-olive-400" secondaryBgColor="bg-lavender-700">
     <div class="max-w-lg">
-        <h1 class="my-8 text-5xl text-violet-900">{title}</h1>
-        <h2 class="my-2 text-2xl text-violet-700">
+        <h1 class="my-8 text-5xl text-lavender-500">{title}</h1>
+        <h2 class="my-2 text-2xl text-lavender-500">
             {description}
         </h2>
-        <p class="text-xs italic text-end">haha just kidding</p>
+        <p class="text-xs italic text-end text-lavender-700">haha just kidding</p>
     </div>
         
     {page.data.map((post) => 
-        <PostPreview post={post} />
+        <PostPreview post={post} style="bg-lavender-300"/>
     )}
 
-    <small> {page.start + 1} - {page.end + 1} of {page.total} </small>
-    <!-- <Pagination {page} />  -->
+    <small class="text-lavender-100"> {page.start + 1} - {page.end + 1} of {page.total} </small>
 </BasePage>

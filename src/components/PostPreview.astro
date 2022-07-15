@@ -12,27 +12,23 @@ export type Post = {
 
 export interface Props {
   post: MarkdownInstance<Post>;
+  style?: string;
 }
 
-const { post } = Astro.props as Props;
+const { post, style } = Astro.props as Props;
+
+/**
+ * Not sure if I want to use 'author' and 'description'. 
+ */
 const { author, date, title, description }: Post = post.frontmatter;
 
 const url = `posts/${getSlugFromPath(post.file)}`
 
+
+const className = `${style} max-w-2xl p-8 my-8 bg-olive-200 rounded-xl`
 ---
 
-<article class="max-w-2xl p-8 my-8 rounded-xl bg-violet-200">
-  <h2 class="text-2xl">{title}</h2>
-  <div class="flex justify-between">
-    <p class="text-sm italic ">By {author}</p>
-    <time class="text-xs" datetime={date}>{formatDate(date)}</time>
-  </div>
-  <div class="flex flex-col">
-    <p class="">{description}</p>
-    <a
-      class="text-lg hover:underline-offset-4 hover:underline hover:text-violet-900"
-      href={url}
-      aria-label={`Read ${title}`}>Read</a
-    >
-  </div>
+<article class={className}>
+  <h2 class="text-2xl"><a href={url} class="text-grey-800 hover:underline-offset-4 hover:underline hover:text-lavender-500">{title}</a></h2>
+  <time class="text-xs" datetime={date}>{formatDate(date)}</time>
 </article>

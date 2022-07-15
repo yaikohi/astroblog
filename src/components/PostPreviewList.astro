@@ -10,12 +10,14 @@ export type Post = {
 }
 
 export interface Props {
-    posts: MarkdownInstance<Post>[]
+    posts: MarkdownInstance<Post>[],
+    style?: string;
+
 }
 
-const { posts } = Astro.props as Props
+const { posts, style } = Astro.props as Props
 ---
 
 <section>
-    {posts.map(post => <PostPreview post={post} />)}
+    {posts.map(post => <PostPreview post={post} style={style} />)}
 </section>
